@@ -2,6 +2,20 @@ import tweepy
 import json
 # Setting
 from Settings import APIKey, APISecret, AccessSecret, AccessToken
+# GUID
+import uuid
+
+#///////////////////////////////////////////
+# Generamos Un GUID 
+#///////////////////////////////////////////
+IdUnico = uuid.uuid4()
+Guid = str(IdUnico)
+
+#///////////////////////////////////////////
+#Search Parameter
+#///////////////////////////////////////////
+SearchParameter = "@BancoPichincha"
+
 
 # Setting Autentificaion
 consumer_key = APIKey
@@ -23,6 +37,29 @@ api = tweepy.API(auth, wait_on_rate_limit_notify=True, wait_on_rate_limit=True)
 #print (json.dumps(data._json, indent=2))
 
 # Buscar Tweets
-for tweet in tweepy.Cursor(api.search, q="Netlife", 
-tweet_modes="extended").items(100):
-    print (json.dumps(tweet._json, indent=2)) # all text
+for tweet in tweepy.Cursor(api.search, q=SearchParameter, 
+tweet_modes="extended").items(1000000):
+    #print (json.dumps(tweet._json, indent=2)) # all text
+    # fetching the full_text attribute 
+    idtweet = tweet.id 
+    createdtweet = tweet.created_at 
+    usertweet = tweet.user.name 
+    TweetMsg = tweet.text 
+    retweeted = tweet.retweeted 
+    retweet_count =tweet.retweet_count 
+    lang = tweet.lang 
+     
+    
+    print ('id : ', idtweet )
+    print ('created : ', createdtweet)
+    print ('user : ', usertweet)
+    print ('Tweet: ', TweetMsg)
+    print ('retweeted : ', retweeted )
+    print ('retweet_count : ',retweet_count )
+    print ('lang  : ', lang  )
+    
+    # save Resultado        
+    from SaveTweet import OldTweet
+    OldTweet (Guid, createdtweet, idtweet, usertweet, TweetMsg, SearchParameter, retweeted, retweet_count, lang)
+    
+
