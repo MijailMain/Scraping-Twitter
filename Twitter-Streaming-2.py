@@ -13,7 +13,7 @@ Guid = str(IdUnico)
 #///////////////////////////////////////////
 #Search Parameter
 #///////////////////////////////////////////
-SearchParameter = "nba"
+SearchParameter = "@BancoPichincha"
 
 class TweetsListener (tweepy.StreamListener):
 

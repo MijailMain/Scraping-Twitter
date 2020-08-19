@@ -6,7 +6,7 @@ import pymysql
 from Settings import Conexion
 
 # Add Tweet
-def AddTweet (GUID, DateTweet, IdTweet, user, Tweet, Parameter, retweeted, retweet_count):
+def AddTweet (GUID, DateTweet, IdTweet, user, Tweet, Parameter, retweeted, retweet_count, lang):
   
     # Connect to the database
     connection = pymysql.connect(host=Conexion[0],
@@ -20,8 +20,8 @@ def AddTweet (GUID, DateTweet, IdTweet, user, Tweet, Parameter, retweeted, retwe
         with connection.cursor() as cursor:
         # Create a new record
                          
-            sql = "INSERT INTO `TweetData` ( `GUID`, `DateTweet`, `IdTweet`, `user`, `Tweet`,  `Parameter`,  `retweeted`,  `retweet_count`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-            cursor.execute(sql, (GUID, DateTweet, IdTweet, user, Tweet, Parameter, retweeted, retweet_count))
+            sql = "INSERT INTO `TweetData` ( `GUID`, `DateTweet`, `IdTweet`, `user`, `Tweet`,  `Parameter`,  `retweeted`,  `retweet_count`, `lang`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (GUID, DateTweet, IdTweet, user, Tweet, Parameter, retweeted, retweet_count, lang))
             
             # connection is not autocommit by default. So you must commit to save
             # your changes.
