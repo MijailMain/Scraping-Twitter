@@ -36,7 +36,7 @@ streamingApi = tweepy.Stream(auth=api.auth,
 
 streamingApi.filter(
     # follow=["dsd1295057766126624773"] # Por UserId (Famoso)
-     track=["Correa"] # Por palabra clave
+     track=["@BancoPichincha"] # Por palabra clave
     # site para get zone https://boundingbox.klokantech.com/ 
     #locations=[-92.20723923,-5.01593148,-75.19250402,1.88359633] # por zona geografica
     
