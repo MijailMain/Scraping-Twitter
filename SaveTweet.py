@@ -6,7 +6,7 @@ import pymysql
 from Settings import Conexion
 
 # Add Tweet
-def AddTweet (GuidTest, Hostname, VersionClient, VersionService, CameraMode, TotalCameraSetting, IdentificationService, Optimized, ServicesType, BetweenPictures, Ciclos, DuracionCiclo, Descripcion):
+def AddTweet (GUID, DateTweet, IdTweet, user, Tweet, Parameter, retweeted, retweet_count):
   
     # Connect to the database
     connection = pymysql.connect(host=Conexion[0],
@@ -20,8 +20,8 @@ def AddTweet (GuidTest, Hostname, VersionClient, VersionService, CameraMode, Tot
         with connection.cursor() as cursor:
         # Create a new record
                          
-            sql = "INSERT INTO `Test` ( `GuidTest`, `Hostname`, `VersionClient`, `VersionService`, `CameraMode`,  `TotalCameras`,  `IdentificationService`,  `FaceAnalysisOptimization`,  `ServicesType`, `BetweenPictures`, `Ciclos`, `DuracionCiclos`, `DescriptionTest`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            cursor.execute(sql, (GuidTest, Hostname, VersionClient, VersionService, CameraMode, TotalCameraSetting, Optimized, ServicesType, BetweenPictures, Ciclos, DuracionCiclo, Descripcion))
+            sql = "INSERT INTO `TweetData` ( `GUID`, `DateTweet`, `IdTweet`, `user`, `Tweet`,  `Parameter`,  `retweeted`,  `retweet_count`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (GUID, DateTweet, IdTweet, user, Tweet, Parameter, retweeted, retweet_count))
             
             # connection is not autocommit by default. So you must commit to save
             # your changes.
